@@ -122,6 +122,7 @@ namespace Graph_Reader
             {
                 timer1.Stop();
             }
+
         }
         private void CreateGraph(ZedGraphControl zgc)
         {
@@ -132,6 +133,7 @@ namespace Graph_Reader
             myPane.Title.Text = "2017140141 하상우\n(data.csv 실습)";
             myPane.XAxis.Title.Text = "time";
             myPane.YAxis.Title.Text = "Result";
+
 
             // Make up some data arrays based on the Sine function
             double x, y1, y2;
@@ -178,7 +180,7 @@ namespace Graph_Reader
             LineItem myCurve2 = myPane.AddCurve("Y2", list2, Color.Blue, SymbolType.Circle);
             LineItem myCurve3 = myPane.AddCurve("Y1+Y2", list3, Color.Green, SymbolType.Square);
 
-            for (int i = 1; i < Time2.Count; i++)
+            for (int i = 0; i < Time2.Count; i++)
             {
                 x = Time2[i];
                 y1 = A1 * Math.Cos(2 * Math.PI * F1 * Time2[i] * Math.PI / 180);
@@ -187,7 +189,7 @@ namespace Graph_Reader
                 list1.Add(x, y1);
                 list2.Add(x, y2);
                 list3.Add(x, y3);
-                if (Time2.Count == 201)
+                if (Time2.Count == 200)
                 {
                     timer1.Stop();
                 }
@@ -210,8 +212,9 @@ namespace Graph_Reader
             F2 = double.Parse(textF2.Text);
 
 
-
+            richtxtBox1.Text = "";
             SetSize();
+            zedGraphControl1.Refresh();
             CreateGraph2(zedGraphControl1);
             zedGraphControl1.Location = new Point(350, 40);
             zedGraphControl1.Size = new Size(450, 300);
@@ -236,6 +239,7 @@ namespace Graph_Reader
                 btnStart2.Enabled = false;
             }
         }
+
         private void btnReset_Click(object sender, EventArgs e)
         {
             btnStart2.Enabled = true;
@@ -257,7 +261,7 @@ namespace Graph_Reader
         }
         private void IncreaseCSeconds()
         {
-            if(_cseconds == 99)
+            if(_cseconds == 9)
             {
                 _cseconds = 0;
                 IncreaseSeconds();
